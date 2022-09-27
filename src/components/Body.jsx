@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { AiFillClockCircle } from "react-icons/ai";
-import { reducerCases } from "../Utils/Constants";
-import { useStateProvider } from "../Utils/StateProvider";
+import { reducerCases } from "../utils/Constants";
+import { useStateProvider } from "../utils/StateProvider";
 
 export default function Body({ headerBackground }) {
   const [{ token, selectedPlaylist, selectedPlaylistId }, dispatch] =
@@ -11,7 +11,6 @@ export default function Body({ headerBackground }) {
 
   useEffect(() => {
     const getInitialPlaylist = async () => {
-      console.log(selectedPlaylistId);
       const response = await axios.get(
         `https://api.spotify.com/v1/playlists/${selectedPlaylistId}`,
         {
@@ -74,13 +73,13 @@ export default function Body({ headerBackground }) {
         name,
         artists,
         image,
-      };
-      dispatch({ type: reducerCases.SET_PLAYING, currentPlaying });
-      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
+      }
+      dispatch({ type: reducerCases.SET_PLAYING, currentPlaying })
+      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true })
     } else {
-      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
+      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true })
     }
-  };
+  }
   const msToMinutesAndSeconds = (ms) => {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);

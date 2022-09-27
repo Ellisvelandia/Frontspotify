@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import { useStateProvider } from "../Utils/StateProvider";
+import { useStateProvider } from "../utils/StateProvider";
 
 export default function Navbar({ navBackground }) {
   const [{ userInfo }] = useStateProvider();
@@ -13,7 +13,7 @@ export default function Navbar({ navBackground }) {
         <input type="text" placeholder="Artists, songs, or podcasts" />
       </div>
       <div className="avatar">
-        <a href="#">
+        <a href=" # ">
           <CgProfile />
           <span>{userInfo?.name}</span>
         </a>
