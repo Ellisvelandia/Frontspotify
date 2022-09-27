@@ -58,6 +58,24 @@ export default function Body() {
               <p className="description">{selectedPlaylist.description}</p>
             </div>
           </div>
+          <div className="list">
+            <div className="header-row">
+              <div className="col">
+                <span>#</span>
+              </div>
+              <div className="col">
+                <span>TITLE</span>
+              </div>
+              <div className="col">
+                <span>ALBUM</span>
+              </div>
+              <div className="col">
+                <span>
+                  <AiFillClockCircle />
+                </span>
+              </div>
+            </div>
+          </div>
         </>
       )}
     </Container>
