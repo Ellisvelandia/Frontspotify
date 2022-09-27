@@ -1,10 +1,11 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 export default function CurrentTrack() {
-  const [{ token, currentPlaying }, dispatch] = useStateProvider();
+  const [{ token, currentlyPlaying }, dispatch] = useStateProvider();
+  console.log("component", currentlyPlaying);
   useEffect(() => {
     const getCurrentTrack = async () => {
       const response = await axios.get(
@@ -17,30 +18,32 @@ export default function CurrentTrack() {
         }
       );
       if (response.data !== "") {
-        const currentPlaying = {
+        const currentlyPlaying = {
           id: response.data.item.id,
           name: response.data.item.name,
           artists: response.data.item.artists.map((artist) => artist.name),
           image: response.data.item.album.images[2].url,
         };
-        dispatch({ type: reducerCases.SET_PLAYING, currentPlaying });
+        dispatch({ type: reducerCases.SET_PLAYING, currentlyPlaying });
       } else {
-        dispatch({ type: reducerCases.SET_PLAYING, currentPlaying: null });
+        dispatch({ type: reducerCases.SET_PLAYING, currentlyPlaying: null });
       }
     };
     getCurrentTrack();
   }, [token, dispatch]);
   return (
     <Container>
-      {currentPlaying && (
+      {currentlyPlaying && (
         <div className="track">
           <div className="track__image">
-            <img src={currentPlaying.image} alt="currentPlaying" />
+            <img src={currentlyPlaying.image} alt="currentlyPlaying" />
           </div>
           <div className="track__info">
-            <h4 className="track__info__track__name">{currentPlaying.name}</h4>
+            <h4 className="track__info__track__name">
+              {currentlyPlaying.name}
+            </h4>
             <h6 className="track__info__track__artists">
-              {currentPlaying.artists.join(", ")}
+              {currentlyPlaying.artists.join(", ")}
             </h6>
           </div>
         </div>

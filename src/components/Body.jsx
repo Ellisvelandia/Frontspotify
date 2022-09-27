@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useStateProvider } from "../utils/StateProvider";
 import { AiFillClockCircle } from "react-icons/ai";
 import { reducerCases } from "../utils/Constants";
-import { useStateProvider } from "../utils/StateProvider";
-
 export default function Body({ headerBackground }) {
   const [{ token, selectedPlaylist, selectedPlaylistId }, dispatch] =
     useStateProvider();
@@ -42,7 +41,6 @@ export default function Body({ headerBackground }) {
     };
     getInitialPlaylist();
   }, [token, dispatch, selectedPlaylistId]);
-
   const playTrack = async (
     id,
     name,
@@ -68,21 +66,21 @@ export default function Body({ headerBackground }) {
       }
     );
     if (response.status === 204) {
-      const currentPlaying = {
+      const currentlyPlaying = {
         id,
         name,
         artists,
         image,
-      }
-      dispatch({ type: reducerCases.SET_PLAYING, currentPlaying })
-      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true })
+      };
+      dispatch({ type: reducerCases.SET_PLAYING, currentlyPlaying });
+      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
     } else {
-      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true })
+      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
     }
-  }
+  };
   const msToMinutesAndSeconds = (ms) => {
-    var minutes = Math.floor(ms / 60000);
-    var seconds = ((ms % 60000) / 1000).toFixed(0);
+    let minutes = Math.floor(ms / 60000);
+    let seconds = ((ms % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   };
   return (

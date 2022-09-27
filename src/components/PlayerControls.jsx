@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import styled from "styled-components";
 import {
@@ -8,7 +9,6 @@ import {
 import { CgPlayTrackNext, CgPlayTrackPrev } from "react-icons/cg";
 import { FiRepeat } from "react-icons/fi";
 import { useStateProvider } from "../utils/StateProvider";
-import axios from "axios";
 import { reducerCases } from "../utils/Constants";
 export default function PlayerControls() {
   const [{ token, playerState }, dispatch] = useStateProvider();

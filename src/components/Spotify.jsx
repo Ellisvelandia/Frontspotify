@@ -1,9 +1,9 @@
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import axios from "axios";
 import { useStateProvider } from "../utils/StateProvider";
 import Body from "./Body";
 import { reducerCases } from "../utils/Constants";
