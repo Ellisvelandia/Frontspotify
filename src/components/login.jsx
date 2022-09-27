@@ -3,8 +3,23 @@ import styled from "styled-components";
 
 export default function Login() {
   const handleClick = () => {
-    alert("click")
-  }
+    const clientId = "d485c1c83ad44d30820cc3e33004bc5b";
+    const redirectUrl = "http://localhost:3000/";
+    const apiUrl = "https://accounts.spotify.com/authorize";
+    const scope = [
+      "user-read-email",
+      "user-read-private",
+      "user-read-playback-state",
+      "user-modify-playback-state",
+      "user-read-currently-playing",
+      "user-read-playback-position",
+      "user-top-read",
+      "user-read-recently-played",
+    ];
+    window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=${scope.join(
+      " "
+    )}&response_type=token&show_daialog=true`;
+  };
   return (
     <Container>
       <img
@@ -35,5 +50,6 @@ const Container = styled.div`
     background-color: black;
     color: #49f585;
     font-size: 1.4rem;
+    cursor: pointer;
   }
 `;
